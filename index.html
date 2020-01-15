@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Create CSV file from table</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-</head>
-<body>
+    <head>
+        <title>Create CSV file from table</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="tableToCsv.js"></script>
+    </head>
+    <body>
 
-<h2>Basic HTML Table</h2>
+        <h2>Basic HTML Table</h2>
 
-<table style="width:100%" exportable="true">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>
-    <td>80</td>
-  </tr>
-</table>
+        <table style="width:100%" exportable="true">
+            <caption>testFile</caption>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th> 
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>80</td>
+            </tr>
+        </table>
 
 
-<scrip>
-$(document).ready(function () {
-    $('table').each(function () {
-        var $table = $(this);
-        var isTableExportable = $table.attr('exportable');
-        if (typeof isTableExportable !== typeof undefined && isTableExportable !== false && isTableExportable !== "false") {
-            var $button = $("<button type='button' class='btn btn-primary text-uppercase export-to-csv-table-btn'>");
-            $button.html("<i class='fas fa-file-csv'></i> &nbsp; Export CSV");
-            $button.insertBefore($table);
-            $button.click(function () {
-                $table.tableToCSV();
+        <script>
+            $(document).ready(function () {
+                $('table').each(function () {
+                    var $table = $(this);
+                    var isTableExportable = $table.attr('exportable');
+                    if (typeof isTableExportable !== typeof undefined && isTableExportable !== false && isTableExportable !== "false") {
+                        var $button = $("<button type='button' class='btn btn-primary text-uppercase export-to-csv-table-btn'>");
+                        $button.html("<i class='fas fa-file-csv'></i> &nbsp; Export CSV");
+                        $button.insertBefore($table);
+                        $button.click(function () {
+                            $table.tableToCSV();
+                        });
+                    }
+                });
             });
-        }
-    });
-});
-</script>
-</body>
+        </script>
+    </body>
 </html>
